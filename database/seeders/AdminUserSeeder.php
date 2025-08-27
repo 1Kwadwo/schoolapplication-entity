@@ -49,17 +49,20 @@ class AdminUserSeeder extends Seeder
             
             // Create sample applications for each student
             $statuses = ['pending', 'under_review', 'accepted', 'rejected'];
-            $programs = ['Computer Science', 'Engineering', 'Business Administration', 'Medicine', 'Law'];
+            
+            // Get a random program ID
+            $program = \App\Models\Program::inRandomOrder()->first();
             
             Application::create([
                 'user_id' => $user->id,
+                'program_id' => $program ? $program->id : null,
                 'full_name' => $user->name,
                 'email' => $user->email,
                 'phone_number' => '+1-555-' . rand(100, 999) . '-' . rand(1000, 9999),
                 'date_of_birth' => now()->subYears(rand(18, 25)),
                 'gender' => ['male', 'female', 'other'][rand(0, 2)],
                 'address' => rand(100, 9999) . ' Main St, City, State ' . rand(10000, 99999),
-                'program_of_choice' => $programs[array_rand($programs)],
+                'program_of_choice' => $program ? $program->name : 'Unknown Program',
                 'previous_education' => 'High School Diploma from ' . ['Lincoln High', 'Washington High', 'Central High'][rand(0, 2)] . ' School. Graduated with honors.',
                 'grade_file' => null, // In a real scenario, this would be a file path
                 'status' => $statuses[array_rand($statuses)],

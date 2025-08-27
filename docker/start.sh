@@ -37,6 +37,10 @@ chmod -R 755 /var/www/html/bootstrap/cache
 echo "Running migrations..."
 php artisan migrate --force || echo "Migration failed, continuing..."
 
+# Run database seeders
+echo "Running database seeders..."
+php artisan db:seed --force || echo "Seeding failed, continuing..."
+
 # Create storage link
 echo "Creating storage link..."
 php artisan storage:link || echo "Storage link failed, continuing..."
