@@ -13,6 +13,8 @@ bootstrap/cache/*
 README.md
 DEPLOYMENT.md
 DEPLOYMENT_CHECKLIST.md
-docker/
+RENDER_DEPLOYMENT.md
+env-production.txt
+generate-key.sh
 Dockerfile
 .dockerignore
