@@ -5,6 +5,12 @@ set -e
 
 echo "Starting Laravel application..."
 
+# Generate APP_KEY if not set
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:your-generated-key-here" ]; then
+    echo "Generating APP_KEY..."
+    php artisan key:generate --force
+fi
+
 # Create necessary directories if they don't exist
 mkdir -p /var/www/html/storage/framework/cache
 mkdir -p /var/www/html/storage/framework/sessions
