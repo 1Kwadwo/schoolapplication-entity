@@ -1,19 +1,9 @@
 services:
   - type: web
     name: school-application-system
-    env: php
+    env: docker
     plan: free
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      npm ci
-      npm run build
-    startCommand: |
-      php artisan migrate --force
-      php artisan storage:link
-      php artisan config:cache
-      php artisan route:cache
-      php artisan view:cache
-      vendor/bin/heroku-php-apache2 public/
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
         value: production
