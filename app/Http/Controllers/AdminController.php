@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+// Force fresh deployment - cache busting
+
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
