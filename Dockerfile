@@ -22,7 +22,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && rm -rf /var/lib/apt/lists/*
 
 # Install only the essential PHP extensions that Laravel actually needs
-RUN docker-php-ext-install pdo_mbstring pdo_sqlite zip
+RUN docker-php-ext-install mbstring pdo pdo_sqlite zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
