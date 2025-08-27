@@ -13,8 +13,6 @@ services:
         value: false
       - key: APP_KEY
         value: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
-      - key: APP_URL
-        value: https://schoolapplication-entity-6.onrender.com
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE

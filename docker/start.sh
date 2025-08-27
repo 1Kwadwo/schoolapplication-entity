@@ -9,6 +9,16 @@ echo "Starting Laravel application..."
 echo "Setting simple APP_KEY for offline project..."
 export APP_KEY="base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 
+# Auto-detect and set APP_URL
+if [ -z "$APP_URL" ] || [[ "$APP_URL" == *"schoolapplication-entity-"* ]]; then
+    echo "Auto-detecting APP_URL..."
+    # Get the current hostname from environment
+    if [ ! -z "$RENDER_EXTERNAL_HOSTNAME" ]; then
+        export APP_URL="https://$RENDER_EXTERNAL_HOSTNAME"
+        echo "Set APP_URL to: $APP_URL"
+    fi
+fi
+
 # Create necessary directories if they don't exist
 mkdir -p /var/www/html/storage/framework/cache
 mkdir -p /var/www/html/storage/framework/sessions
