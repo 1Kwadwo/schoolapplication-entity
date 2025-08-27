@@ -4,10 +4,10 @@
 # sleep 10
 
 # Run Laravel migrations
-php artisan migrate --force
+php artisan migrate --force || true
 
 # Create storage link
-php artisan storage:link
+php artisan storage:link || true
 
 # Clear and cache configuration
 php artisan config:cache

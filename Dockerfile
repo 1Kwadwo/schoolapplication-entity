@@ -11,14 +11,17 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    nodejs \
-    npm \
     sqlite3 \
     libsqlite3-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
-    libpng-dev \
-    libwebp-dev
+    libwebp-dev \
+    ca-certificates \
+    gnupg
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -43,7 +46,7 @@ COPY --chown=www-data:www-data . /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 
 # Install Node.js dependencies and build assets
-RUN npm ci && npm run build
+RUN npm ci --production=false && npm run build
 
 # Create SQLite database file
 RUN touch /var/www/html/database/database.sqlite
