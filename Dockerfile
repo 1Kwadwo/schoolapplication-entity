@@ -30,23 +30,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for better caching
-COPY composer.json composer.lock ./
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy package files for Node.js
-COPY package.json package-lock.json ./
-
-# Install Node.js dependencies
-RUN npm ci --production=false --no-audit --no-fund
-
-# Copy the rest of the application
+# Copy the entire application first
 COPY . .
 
 # Set proper ownership
 RUN chown -R www-data:www-data /var/www/html
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Install Node.js dependencies
+RUN npm ci --production=false --no-audit --no-fund
 
 # Build frontend assets
 RUN npm run build
