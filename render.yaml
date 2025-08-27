@@ -5,6 +5,8 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     envVars:
+      - key: APP_NAME
+        value: "School Application System"
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -12,7 +14,7 @@ services:
       - key: APP_KEY
         generateValue: true
       - key: APP_URL
-        value: https://school-application-system.onrender.com
+        value: https://schoolapplication-entity.onrender.com
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
