@@ -90,5 +90,6 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ## Default Login Credentials
 
 After deployment, login with:
-- **Email**: `admin@school.com`
-- **Password**: `password`
+
+-   **Email**: `admin@school.com`
+-   **Password**: `password`
