@@ -12,7 +12,7 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_KEY
-        value: base64:BfJ+oYCQiBjw2f6A/urbDd7d6DByy05RoV5kdxQDJOQ=
+        value: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
       - key: APP_URL
         value: https://schoolapplication-entity-6.onrender.com
       - key: DB_CONNECTION
@@ -30,4 +30,10 @@ services:
       - key: LOG_CHANNEL
         value: stack
       - key: MAIL_MAILER
-        value: log
+        value: array
+      - key: MAIL_FROM_ADDRESS
+        value: "noreply@localhost"
+      - key: MAIL_FROM_NAME
+        value: "School Application System"
+      - key: LOG_LEVEL
+        value: info

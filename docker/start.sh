@@ -5,11 +5,9 @@ set -e
 
 echo "Starting Laravel application..."
 
-# Set APP_KEY if not set
-if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:your-generated-key-here" ]; then
-    echo "Setting APP_KEY..."
-    export APP_KEY="base64:BfJ+oYCQiBjw2f6A/urbDd7d6DByy05RoV5kdxQDJOQ="
-fi
+# Set simple APP_KEY for offline project
+echo "Setting simple APP_KEY for offline project..."
+export APP_KEY="base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 
 # Create necessary directories if they don't exist
 mkdir -p /var/www/html/storage/framework/cache
