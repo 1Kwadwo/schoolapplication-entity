@@ -46,7 +46,9 @@ RUN npm ci --production=false --no-audit --no-fund
 RUN npm run build
 
 # Create SQLite database file
-RUN touch /var/www/html/database/database.sqlite
+RUN touch /var/www/html/database/database.sqlite && \
+    chown www-data:www-data /var/www/html/database/database.sqlite && \
+    chmod 664 /var/www/html/database/database.sqlite
 
 # Set proper permissions
 RUN chmod -R 755 /var/www/html/storage \
