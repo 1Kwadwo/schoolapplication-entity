@@ -5,7 +5,6 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    libpng-dev \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
@@ -13,9 +12,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     sqlite3 \
     libsqlite3-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libwebp-dev \
     ca-certificates \
     gnupg
 
@@ -27,8 +23,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install -j$(nproc) pdo_mbstring exif pcntl bcmath gd pdo_sqlite zip
+RUN docker-php-ext-install pdo_mbstring exif pcntl bcmath pdo_sqlite zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
