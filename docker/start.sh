@@ -7,7 +7,7 @@ echo "Starting Laravel application..."
 
 # Set APP_KEY for production
 echo "Setting APP_KEY for production..."
-export APP_KEY="base64:axVZkmyl+nBmXkORy2GXbTziWPhfsiPPkSf/eHeCdcw="
+export APP_KEY="base64:jXPI4z3wpOTSO2e8ZH07tlrrHgTvKqDhr40Lw2f3Sl8="
 
 # Auto-detect and set APP_URL
 if [ -z "$APP_URL" ] || [[ "$APP_URL" == *"schoolapplication-entity-"* ]]; then
