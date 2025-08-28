@@ -5,6 +5,16 @@ set -e
 
 echo "Starting Laravel application..."
 
+# Create .env file from env-production.txt if it doesn't exist
+if [ ! -f /var/www/html/.env ]; then
+    echo "Creating .env file from env-production.txt..."
+    cp /var/www/html/env-production.txt /var/www/html/.env
+fi
+
+# Ensure .env file has correct permissions
+chown www-data:www-data /var/www/html/.env
+chmod 644 /var/www/html/.env
+
 # Set APP_KEY for production
 echo "Setting APP_KEY for production..."
 export APP_KEY="base64:ko3dW4IMQqhA5Y8RiFZqref/ahOasL6jbZLOKMCO9kk="
@@ -16,8 +26,26 @@ if [ -z "$APP_URL" ] || [[ "$APP_URL" == *"schoolapplication-entity-"* ]]; then
     if [ ! -z "$RENDER_EXTERNAL_HOSTNAME" ]; then
         export APP_URL="https://$RENDER_EXTERNAL_HOSTNAME"
         echo "Set APP_URL to: $APP_URL"
+        # Update .env file with the detected URL
+        sed -i "s|APP_URL=.*|APP_URL=$APP_URL|" /var/www/html/.env
     fi
 fi
+
+# Set additional environment variables for production
+echo "Setting production environment variables..."
+export APP_ENV=production
+export APP_DEBUG=false
+export LOG_LEVEL=error
+
+# Update .env file with production settings
+sed -i "s|APP_ENV=.*|APP_ENV=production|" /var/www/html/.env
+sed -i "s|APP_DEBUG=.*|APP_DEBUG=false|" /var/www/html/.env
+
+# Export environment variables from .env file
+echo "Exporting environment variables..."
+set -a
+source /var/www/html/.env
+set +a
 
 # Create necessary directories if they don't exist
 mkdir -p /var/www/html/storage/framework/cache
@@ -52,6 +80,24 @@ php artisan optimize:clear || echo "Cache clear failed, continuing..."
 # Create storage link
 echo "Creating storage link..."
 php artisan storage:link || echo "Storage link failed, continuing..."
+
+# Ensure environment is properly loaded
+echo "Ensuring environment is properly loaded..."
+php artisan config:clear || echo "Config clear failed, continuing..."
+
+# Test environment loading
+echo "Testing environment configuration..."
+php artisan env || echo "Environment test failed, continuing..."
+
+# Verify .env file exists and is readable
+echo "Verifying .env file..."
+if [ -f /var/www/html/.env ]; then
+    echo ".env file exists and contains:"
+    head -5 /var/www/html/.env
+else
+    echo "ERROR: .env file does not exist!"
+    exit 1
+fi
 
 # Clear and cache configuration
 echo "Caching configuration..."

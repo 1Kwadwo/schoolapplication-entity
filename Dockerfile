@@ -33,6 +33,9 @@ WORKDIR /var/www/html
 # Copy the entire application first
 COPY . .
 
+# Create .env file from env-production.txt
+RUN cp env-production.txt .env
+
 # Set proper ownership
 RUN chown -R www-data:www-data /var/www/html
 
