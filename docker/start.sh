@@ -33,6 +33,10 @@ chown -R www-data:www-data /var/www/html/bootstrap/cache
 chmod -R 755 /var/www/html/storage
 chmod -R 755 /var/www/html/bootstrap/cache
 
+# Build assets for production
+echo "Building frontend assets..."
+npm run build
+
 # Run Laravel migrations
 echo "Running migrations..."
 php artisan migrate --force || echo "Migration failed, continuing..."

@@ -14,23 +14,27 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
-        <!-- Fallback for production when Vite assets are not available -->
-        @if(!app()->environment('local'))
+        <!-- Production Asset Fallback -->
+        @if(app()->environment('production'))
             <script>
-                // Fallback for Vite assets
-                if (typeof window.Vite === 'undefined') {
-                    // Load CSS fallback
-                    const link = document.createElement('link');
-                    link.rel = 'stylesheet';
-                    link.href = '/build/assets/app.css';
-                    document.head.appendChild(link);
-                    
-                    // Load JS fallback
-                    const script = document.createElement('script');
-                    script.src = '/build/assets/app.js';
-                    script.type = 'module';
-                    document.head.appendChild(script);
-                }
+                // Check if Vite assets loaded, if not load fallback
+                setTimeout(function() {
+                    if (!document.querySelector('link[href*="app.css"]') || !document.querySelector('script[src*="app.js"]')) {
+                        console.log('Loading fallback assets...');
+                        
+                        // Load CSS fallback
+                        const cssLink = document.createElement('link');
+                        cssLink.rel = 'stylesheet';
+                        cssLink.href = '/build/assets/app.css';
+                        document.head.appendChild(cssLink);
+                        
+                        // Load JS fallback
+                        const jsScript = document.createElement('script');
+                        jsScript.src = '/build/assets/app.js';
+                        jsScript.type = 'module';
+                        document.head.appendChild(jsScript);
+                    }
+                }, 1000);
             </script>
         @endif
     </head>
