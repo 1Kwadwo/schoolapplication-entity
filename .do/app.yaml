@@ -1,0 +1,45 @@
+name: school-application-system
+services:
+  - name: web
+    source_dir: /
+    github:
+      repo: 1Kwadwo/schoolapplication-entity
+      branch: main
+    run_command: vendor/bin/heroku-php-apache2 public/
+    environment_slug: php
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: APP_NAME
+        value: "School Application System"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        value: base64:ko3dW4IMQqhA5Y8RiFZqref/ahOasL6jbZLOKMCO9kk=
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: database/database.sqlite
+      - key: CACHE_STORE
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: error
+      - key: MAIL_MAILER
+        value: log
+      - key: MAIL_FROM_ADDRESS
+        value: "noreply@school.com"
+      - key: MAIL_FROM_NAME
+        value: "School Application System"
+    http_port: 80
+    routes:
+      - path: /
+    health_check:
+      http_path: /
