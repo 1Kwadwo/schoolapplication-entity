@@ -99,6 +99,8 @@ else
     exit 1
 fi
 
+
+
 # Clear and cache configuration
 echo "Caching configuration..."
 php artisan config:cache || echo "Config cache failed, continuing..."
