@@ -13,6 +13,26 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- Fallback for production when Vite assets are not available -->
+        @if(!app()->environment('local'))
+            <script>
+                // Fallback for Vite assets
+                if (typeof window.Vite === 'undefined') {
+                    // Load CSS fallback
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = '/build/assets/app.css';
+                    document.head.appendChild(link);
+                    
+                    // Load JS fallback
+                    const script = document.createElement('script');
+                    script.src = '/build/assets/app.js';
+                    script.type = 'module';
+                    document.head.appendChild(script);
+                }
+            </script>
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
