@@ -29,15 +29,18 @@
 ## Step 4: Configure App Settings
 
 ### Basic Settings:
-- **App Name**: `school-application-system`
-- **Region**: Choose closest to your users
-- **Environment**: `PHP`
+
+-   **App Name**: `school-application-system`
+-   **Region**: Choose closest to your users
+-   **Environment**: `PHP`
 
 ### Build Settings:
-- **Build Command**: Leave empty (auto-detected)
-- **Run Command**: `vendor/bin/heroku-php-apache2 public/`
+
+-   **Build Command**: Leave empty (auto-detected)
+-   **Run Command**: `vendor/bin/heroku-php-apache2 public/`
 
 ### Environment Variables:
+
 Add these environment variables:
 
 ```
@@ -90,33 +93,37 @@ doctl apps run your-app-id -- php artisan db:seed --force
 ## Troubleshooting
 
 ### Check Logs
-- Go to your app in DigitalOcean dashboard
-- Click "Runtime Logs" tab
-- Check for any errors
+
+-   Go to your app in DigitalOcean dashboard
+-   Click "Runtime Logs" tab
+-   Check for any errors
 
 ### Common Issues
 
 1. **Build Failures**:
-   - Check if all dependencies are in `composer.json`
-   - Ensure PHP version is compatible
+
+    - Check if all dependencies are in `composer.json`
+    - Ensure PHP version is compatible
 
 2. **Database Issues**:
-   - SQLite file should be created automatically
-   - Check file permissions
+
+    - SQLite file should be created automatically
+    - Check file permissions
 
 3. **Environment Variables**:
-   - Verify all required env vars are set
-   - Check APP_KEY is correct
+    - Verify all required env vars are set
+    - Check APP_KEY is correct
 
 ## Cost Breakdown
 
-- **Basic App (XXS)**: $5/month
-- **Free Credit**: $5/month
-- **Net Cost**: $0 (completely free!)
+-   **Basic App (XXS)**: $5/month
+-   **Free Credit**: $5/month
+-   **Net Cost**: $0 (completely free!)
 
 ## Scaling
 
 When you need to scale:
+
 1. Go to app settings
 2. Increase instance count
 3. Upgrade instance size
@@ -131,15 +138,15 @@ When you need to scale:
 
 ## Monitoring
 
-- **Logs**: Available in dashboard
-- **Metrics**: CPU, memory, requests
-- **Alerts**: Set up notifications
+-   **Logs**: Available in dashboard
+-   **Metrics**: CPU, memory, requests
+-   **Alerts**: Set up notifications
 
 ## Support
 
-- [DigitalOcean Documentation](https://docs.digitalocean.com/)
-- [App Platform Guide](https://docs.digitalocean.com/products/app-platform/)
-- [Community Support](https://www.digitalocean.com/community/)
+-   [DigitalOcean Documentation](https://docs.digitalocean.com/)
+-   [App Platform Guide](https://docs.digitalocean.com/products/app-platform/)
+-   [Community Support](https://www.digitalocean.com/community/)
 
 ## Next Steps
 
