@@ -1,0 +1,30 @@
+{
+    "external_api": {
+        "success": {
+            "status": "success",
+            "message": "Mock API response for offline development",
+            "data": {
+                "id": 1,
+                "name": "Mock Data",
+                "timestamp": "2024-01-01T00:00:00Z"
+            }
+        },
+        "error": {
+            "status": "error",
+            "message": "Mock error response",
+            "code": 500
+        }
+    },
+    "email_verification": {
+        "success": {
+            "status": "sent",
+            "message": "Verification email sent successfully (mocked)"
+        }
+    },
+    "password_reset": {
+        "success": {
+            "status": "sent",
+            "message": "Password reset email sent successfully (mocked)"
+        }
+    }
+}
