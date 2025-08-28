@@ -2,7 +2,7 @@ APP_NAME="School Application System"
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://schoolapplication-entity-7.onrender.com
-APP_KEY=base64:jXPI4z3wpOTSO2e8ZH07tlrrHgTvKqDhr40Lw2f3Sl8=
+APP_KEY=base64:ko3dW4IMQqhA5Y8RiFZqref/ahOasL6jbZLOKMCO9kk=
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
