@@ -15,8 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
         
-        // Register global middleware to block external requests
-        $middleware->append(\App\Http\Middleware\BlockExternalRequests::class);
+        // Register global middleware to block external requests only in local development
+        if (app()->environment('local')) {
+            $middleware->append(\App\Http\Middleware\BlockExternalRequests::class);
+        }
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
